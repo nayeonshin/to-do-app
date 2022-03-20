@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
+import { nanoid } from "nanoid";
 
 function App() {
   const [toDo, setToDo] = useState("");
@@ -12,8 +14,8 @@ function App() {
       return;
     }
 
-    setToDo("");
     setToDos((currentToDos) => [toDo, ...currentToDos]);
+    setToDo("");
   };
 
   return (
@@ -28,6 +30,12 @@ function App() {
         />
         <button>Add a to-do</button>
       </form>
+      <hr />
+      <ul>
+        {toDos.map((toDo) => (
+          <li key={nanoid()}>{toDo}</li>
+        ))}
+      </ul>
     </div>
   );
 }
